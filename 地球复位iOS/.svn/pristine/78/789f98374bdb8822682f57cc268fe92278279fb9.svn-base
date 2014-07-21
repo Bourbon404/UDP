@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/params.js"></script>
+	<script src="js/cordova.js"></script>
+	<script src="js/MD5.js"></script>
+</head>
+<body>
+	<div class='wrap'>
+		<div class="header">
+			<h1>设置密码</h1>
+		</div>
+		<div class="main">
+			<div class='se_code forget_code'>
+				<input type="text" placeholder='请输入验证码' id='VeriCode'/>		
+				<a href="javascript:;" class='re_get_code' id='reGetBtn'>重新获取验证码</a>
+			</div>
+			<div class='long_gray_btn no_arrow'>
+				<input type="password" class='long_input' placeholder='设置密码' id='Password'/>		
+			</div>
+			<div class='long_gray_btn no_arrow'>
+				<input type="password" class='long_input' placeholder='确认密码' id='rePassword'/>		
+			</div>
+			<div class="long_blue_btn" id='submit'>
+				<span>确&emsp;认</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- 警告框 -->	
+	<div class="warning_wrap">
+		<p>
+			<!-- 警告的内容 -->	
+		</p>
+	</div>
+
+	<!-- 成功提示 -->	
+	<div class="warning_wrap">
+		<p>
+			<!-- 提示的内容 -->	
+		</p>
+	</div>
+
+	<script src="js/set_password.js"></script>
+</body>
+</html>

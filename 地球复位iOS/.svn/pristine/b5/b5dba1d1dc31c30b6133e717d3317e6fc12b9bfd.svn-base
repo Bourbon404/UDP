@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>提交订单</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/common.js"></script>
+    <!--<script src="js/cordova.js"></script>-->
+    <script src="js/iscroll.js"></script>
+    <script type="text/javascript" src="js/globe.js"></script>
+</head>
+<body>
+    <div class='wrap'>
+        <div class="header">
+            <h1>提交订单</h1>
+        </div>
+        <div class="main submit_order" id='submitWrapper'>
+            <ul>
+                <li class='time'>
+                    <span>2014/06/11 12:34</span>
+                </li>
+                <li class='font_size_15'>
+                    <span>金币数:</span>
+                    <span>1000</span>
+                </li>
+                <li class='font_size_15'>
+                    <span>总价:</span>
+                    <span>10元</span>
+                </li>
+                <li class='font_size_15'>
+                    <span>订单号:</span>
+                    <span>BJ638742876832</span>
+                </li>
+                <li class='select_title'>
+                    <span>选择支付方式</span>
+                </li>
+                <li class='card_wrap'>
+                    <div class='submit_card'>
+                        <img src="image/bank_zf.png"/>
+                    </div>
+                    <div>
+                        <p class='font_size_14'>银行卡支付</p>
+                        <p class='font_size_10'>支付储蓄卡信用卡，无需开通网银</p>
+                    </div>
+                    <div class='card_select'>
+                        <img src="image/dot1.png" id='selectBank'/>
+<!--                         <img src="image/dot_light.png"/> -->
+                    </div>
+                </li>
+                <li class='card_wrap'>
+                    <div class='submit_card'>
+                        <img src="image/zf_bao.png"/>
+                    </div>
+                    <div>
+                        <p class='font_size_14'>支付宝支付</p>
+                        <p class='font_size_10'>推荐有支付宝帐号的用户使用</p>
+                    </div>
+                    <div class='card_select'>
+                        <img src="image/dot1.png" id='selectAlipay'/>
+                        <!-- <img src="image/dot_light.png"/> -->
+                    </div>
+                </li>
+                <li class='long_blue_btn'>
+                    <span>确认支付</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/submit_order.js"></script>
+</body>
+</html>

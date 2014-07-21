@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/params.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/cordova.js"></script>
+</head>
+<body>
+	<div class='wrap'>
+		<div class="header">
+			<h1>输入验证码</h1>
+		</div>
+		<div class="main">
+			<div class="black_word">
+				<span>短信验证码已发送至</span>
+				<span id='MobileNum'></span>
+				<span>，请注意查收。</span>
+			</div>
+			<div class='se_code'>
+				<input type="text" placeholder='请输入验证码' id='VeriCode'/>
+				<a href="javascript:;" class='re_get_code' id='reGetBtn'>重新获取验证码</a>
+			</div>
+			<div class="long_blue_btn" id='submit'>
+				<span>确认提交</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- 警告框 -->
+	<div class="warning_wrap">
+		<p>
+			<!-- 警告的内容 -->
+		</p>
+	</div>
+
+	<!-- 成功 -->
+	<div class="success_wrap">
+		<p>
+			<!-- 成功的内容 -->
+		</p>
+	</div>
+
+	<script src="js/se_code.js"></script>
+</body>
+</html>

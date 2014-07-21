@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/common.css">
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/params.js"></script>
+	<script src="js/cordova.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		document.addEventListener("deviceready", onDeviceReady, false);
+		$(".friend_header span").bind("click",function(){
+			addFriend($(".friend_header input").val(),"");
+		});
+	});
+	function onDeviceReady() {
+		// find all contacts with ' ' in any name field    ,field 如果为空 则返回全部的
+	    var options = new ContactFindOptions();
+	    options.filter = "";
+	    options.multiple = true;
+		/*
+		    查找关键字
+		    名字: "displayName",
+		    电话号码:"phoneNumbers"   //ContactField[]类型
+		*/
+	    var fields = ["displayName", "name", "phoneNumbers"];
+		navigator.contacts.find(fields, onSuccess, onError, options);
+	}
+	// onSuccess: Get a snapshot of the current contacts
+	function onSuccess(contacts) {
+		var html="";
+		// 联系人与电话号码 全写在这儿
+		var aResult = [];    
+		for (var i = 0; contacts[i]; i++) {
+			if (contacts[i].phoneNumbers && contacts[i].phoneNumbers.length) {
+				var name=contacts[i].displayName;
+				var phoneNumber=contacts[i].phoneNumbers[0].value;
+				phoneNumber=phoneNumber.replace(new RegExp(" ","gm"),"");
+				phoneNumber=phoneNumber.replace(new RegExp("-","gm"),"");
+				html+="<li><div class='friend_img'><img src='image/friend_img.png'/></div>";
+				html+="<div class='friend_info'><span>"+name+"</span><span>"+phoneNumber+"</span></div>";
+				html+="<div class='friend_add'><span phone='"+phoneNumber+"' name='"+name+"'>添加</span></div></li>";
+			}
+		}
+		$("#friendWrapper").append(html);
+		$(".friend_add span").bind("click",function(){
+			addFriend($(this).attr("phone"),$(this).attr("name"));
+		});
+	}
+	function onError(contactError) {
+		alert('onError!');
+	}
+	function addFriend(phone,name){
+		loading();
+		var json={
+				requestItems:getMessage("messageBean/0x01_0x11_req.js",["+86"+phone,"0"]),
+				responseItems:getMessage("messageBean/0x01_0x11_resp.js")
+		};
+		RndchinaPlugin.RequestPlugin(json,function(data){
+			data=JSON.parse(data);
+			//data为返回的数据
+			switch (data.ResCode) {
+				case "0":
+					success("请求发送成功");
+					var json = {
+							friendName:name,
+							friendMobile:phone
+						};
+					if(localStorage[MY_REQUEST_FRIENDS]== undefined){
+						localStorage[MY_REQUEST_FRIENDS]=JSON.stringify([json]);
+					}else{
+						var temp = JSON.parse(localStorage[MY_REQUEST_FRIENDS]);
+						temp.push(json);
+						localStorage[MY_REQUEST_FRIENDS] = JSON.stringify(temp);
+					}
+					break;
+				case "16":
+					warning("对方未注册");
+					break;
+				case "20":
+					warning("已经是好友");
+					break;
+				case "255":
+					warning("其他错误，请重试");
+					break;
+				default:
+					warning("未知错误，请重试");
+			};
+			stopLoading();
+		},function(data){
+			warning(data);
+			stopLoading();
+		});
+	}
+	</script>
+</head>
+<body>
+	<div class='wrap'>
+		<div class="header friend_header">
+			<a href="javascript:history.go(-1);" class='back_btn'></a>
+			<input type="text" class='add_num' placeholder='输入电话号码添加'/>
+			<span>添加</span>
+		</div>
+		<div class="friend_main">
+			<ul id='friendWrapper'>
+				
+			</ul>
+		</div>
+	</div>
+	<!-- 警告框 -->
+	<div class="warning_wrap">
+		<p>
+			<!-- 警告的内容 -->
+		</p>
+	</div>
+
+	<!-- 成功 -->
+	<div class="success_wrap">
+		<p>
+			<!-- 成功的内容 -->
+		</p>
+	</div>
+	<!-- 加载中 -->
+	<div class="loading">
+	</div>
+</body>
+</html>

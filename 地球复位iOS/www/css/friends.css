@@ -1,0 +1,247 @@
+/*通用样式开始*/
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: '微软雅黑';
+}
+
+ul,ol,dl { list-style-type: none; }
+
+.hide{
+	display: none;
+}
+
+#divMain{
+	width: 100%;
+	height: 100%;
+	max-width: 1132px;
+}
+
+#divMain li{
+	overflow: hidden;
+	padding: 12px 2.5%;
+	border-bottom: 1px solid #bfbfbf;
+}
+
+.userTitle{
+	/*max-width: 60px;
+	max-height: 61px;*/
+	width: 5.3%;
+	margin:10px 4.5% 0 0;
+	float: left;
+}
+
+/*.userTitle img{
+	width: 100%;
+}*/
+
+.userInfo{
+	width: 35%;
+	/*height: 10%;*/
+	margin: -5 28.5% 0 0;
+	float: left;
+}
+
+.userInfo div span:nth-child(1){
+	font-size: 2.2em;
+}
+
+.userInfo div span:nth-child(2){
+	font-size: 1.8em;
+	color: #009e96;
+}
+
+.commonBtns {border: 1px solid #00a0e9; -webkit-border-radius: 12px; -moz-border-radius: 12px; -ms-border-radius: 12px; -o-border-radius: 12px; border-radius: 12px; width: 10%; height: auto; padding: 5px 0; margin: 10px auto; background: #00a0e9; overflow: hidden;display: inline-block;}
+
+.commonBtns span{
+  font-family: '微软雅黑';
+  font-size: 21px;
+  color: #fff;
+  width: 100%;
+  height: 40px;
+  display: block;
+  line-height: 40px;
+  text-align: center;
+}
+
+#billMainDiv {border: 1px solid #fff; -webkit-border-radius: 12px; -moz-border-radius: 12px; -ms-border-radius: 12px; -o-border-radius: 12px; border-radius: 12px; width: 100%; height: 570px; padding: 5px 0; margin: 10px auto; background: #fff; overflow: hidden;display: inline-block;}
+
+#billTitle {
+	display: block;
+	height: 45px;
+	background: #8fc31f;
+	color: #fff;
+	line-height: 45px;
+}
+
+#billTitle span{
+	font-family: '微软雅黑';
+	font-size: 1.3em;
+	width: 24%;
+	display: inline-block;
+	text-align: center;
+}
+
+#billMainInfo {
+	display: block;
+	overflow: hidden;
+	margin-top: -6px;
+	border: 1px solid #8fc31f;
+	/*border-bottom: none;*/
+	line-height: 45px;
+}
+
+#billMainInfo li{
+	overflow: hidden;
+	line-height: 45px;
+	/*font-size: 0px;*/
+	/*margin-left:-50px;*/
+	border-bottom:1px solid #8fc31f;
+}
+
+#billMainInfo li span{
+	font-family: '微软雅黑';
+	font-size: 24px;
+	display: inline-block;
+	width: 24%;
+	height: 50px;
+	text-align: center;
+	border-left:1px solid #8fc31f;
+}
+
+.shadow{
+	z-index: 11;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+}
+
+.alertMsgForm{
+	display:none;
+	z-index: 22;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 600px;
+	height: 430px;
+	margin-left: -300px;
+	margin-top: -215px;
+	background: url('../image/alertFriend.png') no-repeat;
+	/*display: none;*/
+}
+
+.alertTitle {
+	z-index: 33;
+	position: relative;
+	left: 185px;
+	top: 0px;
+	width: 230px;
+	height: 60px;
+	text-align: center;
+}
+
+/*.alertTitle span{
+	font-family: '微软雅黑';
+	font-size: 2em;
+	color: #fff;
+	display: block;
+	text-align: center;
+}*/
+
+.alertTitle span{
+	font-family: '微软雅黑';
+	font-size: 24px;
+	color: #fff;
+	/*display: block;*/
+	line-height: 60px;
+	/*text-align: center;*/
+}
+
+.alertMsg {
+	z-index: 33;
+	position: relative;
+	left: 140px;
+	top: 80px;
+	width: 320px;
+	height: 92px;
+	text-align: center;
+}
+
+.alertMsg span{
+	font-family: '微软雅黑';
+	font-size: 28px;
+	color: #000;
+	line-height: 92px;
+}
+
+.alertBottons{
+	z-index: 33;
+	position: relative;
+	left: 31px;
+	top: 167px;
+	width: 540px;
+	height: 83px;
+}
+
+.alertBottons span{
+	font-family: '微软雅黑';
+	font-size: 30px;
+	color: #fff;
+	width: 258px;
+	display: inline-block;
+	line-height: 83px;
+	text-align: center;
+}
+
+.alertBottons span:nth-child(1){
+}
+
+.alertBottons span:nth-child(2){
+	margin-left: 19px;
+}
+
+.alertLeftBtn{
+	z-index: 33;
+	position: relative;
+	left: 32px;
+	top: 320px;
+	width: 258px;
+	height: 83px;
+}
+
+.alertRightBtn{
+	z-index: 33;
+	position: relative;
+	left: 318px;
+	top: 320px;
+	width: 258px;
+	height: 83px;
+}
+
+.alertSuccessDiv{
+	display:none;border: 1px solid #fff; -webkit-border-radius: 12px; -moz-border-radius: 12px; -ms-border-radius: 12px; -o-border-radius: 12px; border-radius: 12px;padding: 5px 0; margin: 10px auto; background: #fff; overflow: hidden;width: 404px; height: 303px;z-index: 33;position: absolute;left: 50%;top: 50%;margin-left: -202px;margin-top: -151.5px;
+}
+
+.alertSuccessDiv span{
+	font-family: '微软雅黑';
+	font-size: 32px;
+	color: #000;
+	width: 404px;
+	line-height: 124px;
+	display: block;
+	text-align: center;
+	margin-top: 43px;
+}
+
+#successIcon{
+	z-index: 35px;
+	position: relative;
+	left: 121px;
+	top: 42px;
+	width: 158px;
+	height: 138px;
+	background: url('../image/success.png') no-repeat;
+}

@@ -1,0 +1,630 @@
+/*通用样式开始*/
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	width:100%;
+	height: 100%;
+}
+body{
+	font-size: 62.5%;
+}
+a{
+	text-decoration: none;
+}
+li{
+	list-style: none;
+}
+input{
+	outline: none;
+}
+.hide{
+	display: none;
+}
+.wrap{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	max-width: 1132px;
+	font-family: '微软雅黑';
+}
+.shadow{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+}
+.main{
+	padding: 15px 2.5%;
+}
+.header{
+	overflow: hidden;
+	background: #00a0e9;
+}
+.header h1{
+	position: relative;
+	height: 44px;
+	background: url(../image/header.png) 2% center no-repeat;
+	background-size: 9px;
+	font-size: 1.8em;
+	color: #ffffff;
+	text-align: center;
+	line-height: 44px;
+}
+.back_btn{
+	display: block;
+	float: left;
+	width: 18px;
+	height: 18px;
+	margin-top: 7px;
+	background: url(../image/header.png) 2% center no-repeat;
+	background-size: 9px;
+}
+.long_blue_btn{
+	height: 40px;
+	border-radius: 5px;
+	background: #00a0e9;
+	line-height: 40px;
+	text-align: center;
+	font-size: 1.6em;
+	color: white;
+}
+.long_gray_btn{
+	position: relative;
+	height: 40px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	background: #dcdcdc url(../image/black_right.png) 95% center no-repeat;
+	background-size: 7.5px;
+	line-height: 40px;
+}
+.long_up_btn{
+	margin-bottom: 0;
+	border-bottom: 1px solid #bfbfbf;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.long_down_btn{
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.no_arrow{
+	background: #dcdcdc;
+}
+.long_padding{
+	padding: 0 2.7%;
+}
+.long_input{
+	width: 100%;
+	height: 100%;
+	border: none;
+	background: no-repeat;
+	text-indent: 2.7%;
+	line-height: auto;
+	font-size: 1.5em;
+}
+.grey_word{
+	color: #707070 !important;
+}
+.gray_word{
+	color: #a0a0a0 !important;
+}
+.font_size_10{
+	font-size: 1em !important;
+}
+.font_size_12{
+	font-size: 1.2em !important;
+}
+.font_size_13{
+	font-size: 1.3em !important;
+}
+.font_size_14{
+	font-size: 1.4em !important;
+}
+.font_size_15{
+	font-size: 1.5em !important;
+}
+.warning_wrap{
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 999;
+	width: 200px;
+	height: 150px;
+	margin-left: -100px;
+	margin-top: -75px;
+	border-radius: 10px;
+	background: white url(../image/warning.png) center 20px no-repeat;
+	background-size: 77.5px;
+	box-shadow: 1px 1px 2px black;
+}
+.warning_wrap p{
+	margin-top: 110px;
+	text-align: center;
+	font-size: 1.5em;
+}
+.success_wrap{
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 999;
+	width: 200px;
+	height: 150px;
+	margin-left: -100px;
+	margin-top: -75px;
+	border-radius: 10px;
+	background: white url(../image/success.png) center 20px no-repeat;
+	background-size: 79px;
+	box-shadow: 1px 1px 2px black;
+}
+.success_wrap p{
+	margin-top: 110px;
+	text-align: center;
+	font-size: 1.5em;
+}
+.wait_wrap{
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 999;
+	width: 200px;
+	height: 150px;
+	margin-left: -100px;
+	margin-top: -75px;
+	border-radius: 10px;
+	background: white url(../image/success.png) center 20px no-repeat;
+	background-size: 79px;
+	box-shadow: 1px 1px 2px black;
+}
+.wait_wrap p{
+	margin-top: 110px;
+	text-align: center;
+	font-size: 1.5em;
+}
+.country_wrap{
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	width: 100%;
+	height: 100%;
+	background: white;
+}
+.country_wrap ul{
+	border-top: 1px solid #888888;
+}
+.country_wrap ul li{
+	height: 30px;
+	border-bottom: 1px solid #888888;
+}
+.clear{
+	clear: both;
+}
+/*通用样式结束*/
+/*首页样式开始*/
+.login_wrap{
+	padding: 265px 0 15px;
+	text-align: center;
+	background: url(../image/index.png) center center no-repeat;
+	background-size: 353px;
+	font-size: 1.5em;
+}
+.login_wrap a{
+	display: inline-block;
+	width: 26%;
+	height: 35px;
+	background: #00a0e9;
+	color: white;
+	line-height: 35px;
+}
+.login_wrap a:nth-child(1){
+	background: #00a0e9;
+	color: white;
+}
+.login_wrap a:nth-child(2){
+	margin-left: 60px;
+	background: #b1babf;
+	color: black;
+}
+/*首页样式结束*/
+/*注册开始*/
+.country{
+	padding: 0 2.7%;
+}
+.china{
+	float: right;
+	margin-right: 6.5%;
+}
+.eight-six{
+	display: inline-block;
+	width: 18%;
+	height: 40px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 1.5em;
+	background: #dcdcdc;
+}
+.phone_number{
+	float: right;
+	width: 79%;
+	height: 40px;
+	border: none;
+	border-radius: 5px;
+	background: #dcdcdc;
+	text-indent: 3%;
+	font-size: 1.5em;
+}
+.user_name{
+	position: relative;
+	z-index: 2;
+}
+.username_tip{
+	position: absolute;
+	left: 15%;
+	top: 0;
+	z-index: 0;
+	line-height: 40px;
+	font-size: 1.2em;
+}
+.regist_password{
+	float: left;
+	width: 48%;
+}
+.regist_password2{
+	margin-left: 4%;
+}
+.help{
+	font-size: 1.2em;
+	color: #00a0e9;
+}
+.read-check{
+	display: block;
+	float: left;
+	width: 15px;
+	height: 16px;
+	border: none;
+	background: url(../image/box.png) 0 bottom no-repeat;
+	background-size: 13px;
+}
+.agree{
+	margin-top: 8px;
+	line-height: 20px;
+}
+.agree span:nth-child(2){
+	margin-left: 5px;
+}
+/*注册结束*/
+/*验证码样式开始*/
+.se_code{
+	margin: 25px 0 17.5px;
+}
+.se_code input{
+	width: 74%;
+	height: 40px;
+	background: #dcdcdc;
+	border: none;
+	border-radius: 5px;
+	font-size: 1.5em;
+	text-indent: 3.75%;
+}
+.re_get_code{
+	float: right;
+	width: 23%;
+	height: 40px;
+	background: #00a0e9;
+	border-radius: 5px;
+	line-height: 40px;
+	text-align: center;
+	color: white;
+	font-size: 1.5em;
+}
+/*验证码样式结束*/
+/*登录样式开始*/
+.fo_password{
+	margin-top: 10px;
+}
+.fo_password a{
+	color: #00a0e9;
+	font-size: 1.2em;
+}
+/*登录样式结束*/
+/*忘记密码开始*/
+.forget_code{
+	margin: 0 0 15px;
+}
+/*忘记密码结束*/
+/*系统设置开始*/
+.system_message{
+	position: relative;
+}
+.message_mark{
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	width: 14px;
+	height: 14px;
+	background: white;
+	border-radius: 7px;
+}
+.message_mark i{
+	display: block;
+	width: 10px;
+	height: 10px;
+	margin: 2px auto;
+	border-radius: 5px;
+	background: #e60012;
+}
+/*系统设置结束*/
+/*系统消息开始*/
+.system_main{
+	padding: 0%;
+}
+.system_message li{
+	padding:0 2.5% 15px;
+	border-bottom: 1px solid #bfbfbf;
+}
+.system_message .time{
+	margin-top: 10px;
+	font-size: 1em;
+	color: #bfbfbf;
+}
+.system_message .con{
+	margin-top: 5px;
+	font-size: 1.5em;
+}
+.message_clear{
+	position: absolute;
+	top: 13px;
+	right: 2.5%;
+	font-size: 1.2em;
+	color: white;
+}
+/*系统消息结束*/
+/*关于开始*/
+.about_main{
+	position: absolute;
+	top: 44px;
+	bottom: 0px;
+	font-size: 1.5em;
+}
+.about_main ul{
+	padding: 1em 2.5%;
+}
+.about_main li{
+	margin: 0.2em 0;
+	text-indent: 2em;
+}
+/*关于结束*/
+/*消费记录开始*/
+.expend_main{
+	position: absolute;
+	top: 44px;
+	bottom: 0px;
+	width: 100%;
+}
+.expend_main li{
+	overflow: hidden;
+	padding: 15px 2.5%;
+	border-bottom: 1px solid #bfbfbf;
+}
+.expend_left{
+	float: left;
+	width: 37%;
+	padding: 0 2% 0 0;
+}
+.expend_left div:nth-child(1){
+	font-size: 1.5em;
+}
+.expend_left div:nth-child(2){
+	margin-top: 5px;
+	font-size: 1.5em;
+}
+.expend_left div:nth-child(3){
+	font-size: 1em;
+}
+.expend_left .blue{
+	color: #00a0e9;
+}
+.expend_left .brown{
+	color: #f39800;
+}
+.expend_left .gray{
+	color: #bfbfbf;
+}
+.float_right{
+	float: right;
+}
+.expend_right{
+	float: right;
+	width: 18%;
+	height: 30px;
+	margin-top: 16px;
+	border-radius: 5px;
+	background: #bfbfbf;
+	line-height: 30px;
+	text-align: center;
+	color: white;
+}
+/*消费记录结束*/
+/*添加好友开始*/
+.friend_header{
+	padding: 7.5px 2.5%;
+}
+.add_num{
+	display: block;
+	float: left;
+	width: 86%;
+	height: 32px;
+	margin-left: 1.5%;
+	border: none;
+	border-radius: 5px;
+	text-indent: 1em;
+}
+.friend_header span:nth-child(3){
+	display: block;
+	float: right;
+	margin-top: 4px;
+	font-size: 1.8em;
+	color: white;
+}
+.friend_main li{
+	overflow: hidden;
+	padding: 10px 2.5%;
+	border-bottom: 1px solid #bfbfbf;
+}
+.friend_img{
+	float: left;
+	width: 5.7%;
+	margin: 6px 2.5% 0 0;
+}
+.friend_img img{
+	width: 100%;
+}
+.friend_info{
+	float: left;
+}
+.friend_info span{
+	display: block;
+}
+.friend_info span:nth-child(1){
+	font-size: 1.5em;
+}
+.friend_info span:nth-child(2){
+	margin-top: 6px;
+	font-size: 1.1em;
+}
+.friend_add{
+	float: right;
+	width: 12%;
+	height: 25px;
+	margin-top: 6px;
+	background: #00a0e9;
+	border-radius: 10px;
+	line-height: 25px;
+	text-align: center;
+	color: white;
+	/*font-size: 1.5em;*/
+	font-size: 17px;
+}
+.friend_Operate{
+	float: right;
+	width: 12%;
+	height: 50px;
+	margin-top: 6px;
+	background: #00a0e9;
+	border-radius: 10px;
+	line-height: 50px;
+	text-align: center;
+	color: white;
+	/*font-size: 1.5em;*/
+	font-size: 24px;
+}
+/*添加好友结束*/
+/*好友列表开始*/
+.friend_header div{
+	width: 44%;
+	height: 30px;
+	margin: 0 auto;
+	border: 1px solid white;
+	border-radius: 8px;
+}
+.friend_header div span{
+	display: block;
+	float: left;
+	width: 50%;
+	height: 100%;
+	line-height: 30px;
+	text-align: center;
+	font-size: 1.5em;
+	color: white;
+}
+.friend_header div span:nth-child(1){
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.friend_header div span:nth-child(2){
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.friend_header div span.hover{
+	color: #00a0e9;
+	background: white;
+}
+.friend_list .friend_add{
+	background: #bfbfbf;
+	color: white;
+}
+/*好友列表结束*/
+/*提交订单开始*/
+.submit_order{
+	position: absolute;
+	top: 44px;
+	bottom: 0;
+	width: 100%;
+	padding: 0;
+}
+.submit_order ul{
+	padding: 15px 0;
+}
+.submit_order li{
+	padding: 0 2.5%;
+}
+.submit_order .time{
+	margin-bottom: 10px;
+	border-bottom: 1px solid #bfbfbf;
+	font-size: 1em;
+	color: #bfbfbf;
+}
+.submit_order .font_size_15{
+	line-height: 25px;
+}
+.submit_order .select_title{
+	margin: 10px 0;
+	color: #bfbfbf;
+	border-bottom: 1px solid #bfbfbf;
+}
+.submit_order .long_blue_btn{
+	margin: 15px 2.5% 0;
+}
+li.card_wrap{
+	overflow: hidden;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #bfbfbf;
+}
+.card_wrap div{
+	float: left;
+}
+.submit_order .font_size_14{
+	font-weight: bold;
+}
+.submit_order .font_size_10{
+	color: #bfbfbf;
+}
+div.card_select{
+	float: right;
+	width: 3.5%;
+	margin-top: 7.5px;
+}
+.card_select img{
+	width: 100%;
+}
+.submit_card{
+	float: left;
+	width: 10%;
+	margin: 0 15px;
+}
+.submit_card img{
+	width: 100%;
+}
+/*提交订单结束*/

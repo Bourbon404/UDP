@@ -1,0 +1,194 @@
+<div class="friend_nav">
+    <p class="d_left" onclick='window.location.href="friend_list.html"'><img src="image/xx_img.png"/></p>
+    <p class="d_right">
+        <img style="padding-top:33px;width:25px;" src="image/s_xin.png" id="refreshList"/>
+        <img style="padding-top:29px;width: 25px;" src="image/t_jia.png" id="btnAddFriend" />
+    </p>
+</div>
+<div class="land_main">
+    <div class="friends_list">
+        
+    </div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		InitFriendsInfo();//加载好友信息
+		$(".friend_nav p:eq(1) > img:eq(1)").bind("click",function(){
+			window.location.href="friend_add.html";
+		});
+	});
+    var beginTime=endTime=0; //长按好友开始及结束时间
+    var timer=0;
+    function bindAllFun(){
+		$('dl[friId]').on('touchstart', function(event) {
+			$('#alertLeftBtn').attr('friId',$(this).attr('friId'));//将当前好友id及phone传给删除事件
+			$('#alertLeftBtn').attr('phone',$(this).attr('phone'));
+			//event.preventDefault();//阻止触摸时浏览器的缩放、滚动条滚动
+			beginTime = new Date().getTime();
+			CalcTime();
+		});
+		$('dl[friId]').on('touchend', function(event) {
+		   clearInterval(timer); 	
+		});
+		//定位好友
+		$('dl dt').find('span:nth-child(1)').click(function(event) {
+	        var friendId=$(this).siblings().attr('friId');
+			var json={
+					requestItems:getMessage("messageBean/0x01_0x16_req.js",[friendId,"0"]),
+					responseItems:getMessage("messageBean/0x01_0x16_resp.js")
+			};
+			RndchinaPlugin.RequestPlugin(json,function(data){
+				data=JSON.parse(data);
+				//data为返回的数据
+				switch (data.ResCode) {
+					case "0":
+						success("定位成功");
+						break;
+					case '17':
+						warning("对方拒绝定位");
+					    break;
+					case '18':
+						warning("对方不在线");
+					    break;
+					case '19':
+						warning("对方未启用位置服务");
+					    break;
+					case "255":
+						warning("未知错误");
+						break;
+					default:
+						warning("未知错误，请重试");
+				};
+			},function(data){
+				warning(data);
+			});
+		});
+
+		//共享操作
+		$('dl dt').find('span:nth-child(2)').click(function(event) {
+	        var flag=$(this).attr('flag');
+	        var friendId=$(this).attr('friId');
+			var json={
+					requestItems:getMessage("messageBean/0x01_0x15_req.js",[friendId,flag,"0"]),
+					responseItems:getMessage("messageBean/0x01_0x15_resp.js")
+			};
+			RndchinaPlugin.RequestPlugin(json,function(data){
+				data=JSON.parse(data);
+				//data为返回的数据
+				switch (data.ResCode) {
+					case "0":
+						success("操作成功");
+						InitFriendsInfo();//刷新好友列表
+						break;
+					case "255":
+						warning("未知错误");
+						break;
+					default:
+						warning("未知错误，请重试");
+				};
+			},function(data){
+				warning(data);
+			});
+		});
+    }
+	function CalcTime(){//每100ms计算长按时间
+		timer=setInterval(function(){
+		    endTime = new Date().getTime();
+		    if ((endTime-beginTime)>1000) {
+		    	$(".alertMsg > span").text("确定删除手机号为"+$('#alertLeftBtn').attr("phone")+"的好友？");
+		    	$('.alertMsgForm').css('display','block');
+		    	clearInterval(timer);
+		    }else{
+		    	clearInterval(timer);
+		    } 	
+		},2000);
+	}
+    
+    function InitFriendsInfo(){
+    	loading();
+    	var json={
+			requestItems:getMessage("messageBean/0x01_0x14_req.js",["0"]),
+			responseItems:getMessage("messageBean/0x01_0x14_resp.js"),
+			flag:1,
+			offset:26
+		};
+		RndchinaPlugin.RequestPlugin(json,function(data){
+			data=JSON.parse(data);
+			//data为返回的数据
+			switch (data.ResCode) {
+				case "0":
+					if(data.FriendNum!="0"){
+						var html="";
+						html+="<dl friId='"+data.FriendID+"' phone='"+data.FriendMobile+"'><dd><img class='friendTitle' src='image/friend_img.png'/><p><span>"+data.FriendName+"</span><img src='image/level"+data.Rank+".png'/></p>";
+						html+="<p><em><img src='image/zhandi.jpg'></em><i>"+data.LandsNum+"块地/"+data.TotalValue+"金币</i></p></dd>";
+						if (data.AgreePosition==0) {//0 不允许共享
+						   html+="<dt><span class='bg1'>定位好友</span><span class='bg1' flag='0' friId='"+data.FriendID+"'>共享位置</span></dt></dl>";
+						}else{//1 允许共享
+						   html+="<dt><span class='bg1'>定位好友</span><span class='bg2' flag='1'>取消共享</span></dt></dl>";
+						}
+			            $(".friends_list").append(html);
+					}else{
+						$(".friends_list").append("暂无好友");
+					}
+					break;
+				case "255":
+					warning("未知错误");
+					break;
+				default:
+					warning("未知错误，请重试");
+			};
+			if(parseInt(data.Pktnum)==(1+parseInt(data.PktSeq))){
+				stopLoading();
+				bindAllFun();
+			}
+		},function(data){
+			stopLoading();
+			bindAllFun();
+			warning(TIMEOUT_ALERT);
+		});
+    }
+   
+    //删除好友事件
+	$('#alertLeftBtn').click(function(event) {
+		$('.shadow').css('display','none');
+		$('.alertMsgForm').css('display','none');
+		loading();
+		var friendId=$(this).attr('friId');
+		var phone=$(this).attr('phone');
+		var json={
+				requestItems:getMessage("messageBean/0x01_0x13_req.js",[friendId,phone,"0"]),
+				responseItems:getMessage("messageBean/0x01_0x13_resp.js")
+		};
+		RndchinaPlugin.RequestPlugin(json,function(data){
+			data=JSON.parse(data);
+			stopLoading();
+			//data为返回的数据
+			switch (data.ResCode) {
+				case "0":
+					var dl=$("dl[friId='"+$("#alertLeftBtn").attr("friId")+"']");
+					dl.remove();
+					success("操作成功");
+					break;
+				case "255":
+					warning("未知错误");
+					break;
+				default:
+					warning("未知错误，请重试");
+			};
+		},function(data){
+			stopLoading();
+			warning(data);
+		});
+	});
+
+	$('#alertRightBtn').click(function(event) {
+		$('.shadow').css('display','none');
+		$('.alertMsgForm').css('display','none');
+	});
+
+	$('#refreshList').click(function(event) {
+		InitFriendsInfo();//刷新好友列表
+	});
+    
+    
+</script>

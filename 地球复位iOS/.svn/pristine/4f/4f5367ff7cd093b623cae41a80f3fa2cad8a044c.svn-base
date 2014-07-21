@@ -1,0 +1,94 @@
+<script type="text/javascript">
+$(function(){
+	loading();
+	var json={
+			requestItems:getMessage("messageBean/0x01_0x30_req.js",["0","0","0","0","1","0"]),
+			responseItems:getMessage("messageBean/0x01_0x30_resp.js"),
+			flag:1,
+			offset:26
+	};
+	RndchinaPlugin.RequestPlugin(json,function(data){
+		console.log("3:"+data);
+		data=JSON.parse(data);
+		if(data.CmdType=="1"&&data.SubType=="48"){
+			//data为返回的数据
+			switch (data.ResCode) {
+				case "0":
+					var ifsale=data.IfSale=="1"?"（出售中...）":"";
+					var html="";
+					html+="<dl><dd><img src='image/d_img"+data.LandType+".png'/><p>"+getBuildingType(data.LandType)+"</p></dd>";
+					html+="<dt><p><i>Title&nbsp;Name</i><span>"+ifsale+"</span></p>";
+					html+="<p>位置:N"+data.LatTop+",E"+data.LngLeft+"</p>";
+					html+="<p>价格:"+data.Price+"金币</p>";
+		            html+="<p></p></dt>";
+		            html+="<em latTop='"+data.LatTop+"' lngLeft='"+data.LngLeft+"'>GO</em></dl>";
+		            $(".land_list").append(html);
+					break;
+				case "255":
+					warning("未知错误");
+					break;
+				default:
+					warning("未知错误，请重试");
+			};
+			if(parseInt(data.Pktnum)==(1+parseInt(data.PktSeq))){
+				stopWaiTing();
+				bind3GoToClick();
+			}
+		}
+	},function(data){
+		stopLoading();
+		bind3GoToClick();
+		warning(data);
+	});
+	$(".soil_nav span").bind("click",function(){
+		var json={
+				requestItems:getMessage("messageBean/0x01_0x31_req.js",["0"]),
+				responseItems:getMessage("messageBean/0x01_0x31_resp.js")
+		};
+		RndchinaPlugin.RequestPlugin(json,function(data){
+			data=JSON.parse(data);
+			//data为返回的数据
+			switch (data.ResCode) {
+				case "0":
+					success("出售所有土地成功");
+					$(".land_list dl dt span").text("（出售中...）");
+					break;
+				case "255":
+					warning("未知错误");
+					break;
+				default:
+					warning("未知错误，请重试");
+			};
+		},function(data){
+			warning(data);
+		});
+	});
+	
+});
+function bind3GoToClick(){
+	$(".land_list dl em").bind("click",function(){
+		var point = new BMap.Point($(this).attr("lngLeft"),$(this).attr("latTop"));  // 创建点坐标
+		map.panTo(point);
+	});
+}
+</script>
+<div class="soil_nav">
+	<!-- 
+    <ul>
+        <li>
+            <img src="image/land_img.png"/>
+            <p>125快地</p>
+        </li>
+        <li>
+            <img src="image/q_dai.png"/>
+            <p>700000金币</p>
+        </li>
+    </ul>
+    -->
+    <span>出售所有</span>
+</div>
+<div class="land_main">
+    <div class="land_list">
+        
+    </div>
+</div>

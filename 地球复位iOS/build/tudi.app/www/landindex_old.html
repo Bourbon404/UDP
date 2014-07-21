@@ -1,0 +1,457 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="trimview" content="1.0.0">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="css/common.css"/>
+    <link type="text/css" rel="stylesheet" href="css/globe.css"/>
+    <script type="text/jscript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/globe.js"></script>
+</head>
+<body>
+    <!--购买弹出层-->
+    <div class="tanchu hide">
+      <div class="t_area">
+          <p><img src="image/gou_bg.png"/><i>购买金币</i></p>
+          <ul>
+              <li style="margin-left:0">
+                  <img src="image/j_bi.png"/>
+                  <p>100金币</p>
+              </li>
+              <li>
+                  <img src="image/j_img02.png"/>
+                  <p>500金币</p>
+              </li>
+              <li>
+                  <img src="image/j_img03.png"/>
+                  <p>1000金币</p>
+              </li>
+              <li>
+                  <img src="image/j_img04.png"/>
+                  <p>2000金币</p>
+              </li>
+          </ul>
+          <span class="inpt"><input type="text" value="1人民币=100金币" name=""/></span>
+          <span class="butn"><input id="q_ren" type="button" value="确认"/><input id="q_xiao" type="button" value="取消"/></span>
+      </div>
+    </div>
+    <!--头部-->
+    <header>
+        <ul>
+            <li>
+                <img style="width:28px;padding-top:9px;" src="image/user_name.png"/>
+                <p class="color1">磨唧小粪</p>
+            </li>
+            <li>
+                <img style="width:23px;padding-top:15px;" src="image/v_grade.png"/>
+                <p class="color2">等级二</p>
+            </li>
+            <li>
+                <img style="width:23px;padding-top:12px;" src="image/gold.png"/>
+                <p class="color3">50000金币</p>
+            </li>
+            <li>
+                <img style="width:22px;padding-top:11px;" src="image/land.png"/>
+                <p class="color4">125块地/700000金币</p>
+            </li>
+            <li>
+                <img style="padding-top:18px;width: 75px;" src="image/g_img.png"/>
+                <p class="color5">3456</p>
+            </li>
+        </ul>
+    </header>
+    <!--主界面-->
+    <section id="map">
+        <div class="grid"></div>
+        <div class="set"><img src="image/set.png"/> </div>
+        <div class="back"><img src="image/f_hui.png"/> </div>
+        <!--占地、账单、好友、土地-->
+        <article>
+            <div class="main">
+                <nav>
+                    <ul>
+                        <li class="l_bg1"><i>占地</i></li>
+                        <li class="l_bg2"><i>账单</i></li>
+                        <li class="l_bg3"><i>好友</i></li>
+                        <li class="l_bg4"><i>土地</i></li>
+                    </ul>
+                </nav>
+                <div class="area">
+                    <!--占地-->
+                    <aside class="aside_bg1">
+                        <div class="land_nav">
+                            <p class="d_left"><img src="image/j_bi.png"/><em>50000金币</em></p>
+                            <p class="d_right"><img src="image/dot_01.png"/><img id="gou" src="image/dot_02.png"/></p>
+                        </div>
+                        <div class="land_main">
+                            <ul>
+                                <h1>一级（1*1）</h1>
+                                <li>
+                                    <img src="image/d_img1.png"/>
+                                    <p>学校</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img2.png"/>
+                                    <p>医院</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img3.png"/>
+                                    <p>公园</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img4.png"/>
+                                    <p>写字楼</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img5.png"/>
+                                    <p>商铺</p>
+                                </li>
+                                <li style="padding-right:3%">
+                                    <img src="image/d_img6.png"/>
+                                    <p>工厂</p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <h1>二级（1*2）</h1>
+                                <li>
+                                    <img src="image/d_img1.png"/>
+                                    <p>学校</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img2.png"/>
+                                    <p>医院</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img3.png"/>
+                                    <p>公园</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img4.png"/>
+                                    <p>写字楼</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img5.png"/>
+                                    <p>商铺</p>
+                                </li>
+                                <li style="padding-right:3%">
+                                    <img src="image/d_img6.png"/>
+                                    <p>工厂</p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <h1>三级（2*2）</h1>
+                                <li>
+                                    <img src="image/d_img1.png"/>
+                                    <p>学校</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img2.png"/>
+                                    <p>医院</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img3.png"/>
+                                    <p>公园</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img4.png"/>
+                                    <p>写字楼</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img5.png"/>
+                                    <p>商铺</p>
+                                </li>
+                                <li style="padding-right:3%">
+                                    <img src="image/d_img6.png"/>
+                                    <p>工厂</p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <h1>四级（2*2）</h1>
+                                <li>
+                                    <img src="image/d_img1.png"/>
+                                    <p>学校</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img2.png"/>
+                                    <p>医院</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img3.png"/>
+                                    <p>公园</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img4.png"/>
+                                    <p>写字楼</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img5.png"/>
+                                    <p>商铺</p>
+                                </li>
+                                <li style="padding-right:3%">
+                                    <img src="image/d_img6.png"/>
+                                    <p>工厂</p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <h1>五级（4*4）</h1>
+                                <li>
+                                    <img src="image/d_img1.png"/>
+                                    <p>学校</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img2.png"/>
+                                    <p>医院</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img3.png"/>
+                                    <p>公园</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img4.png"/>
+                                    <p>写字楼</p>
+                                </li>
+                                <li>
+                                    <img src="image/d_img5.png"/>
+                                    <p>商铺</p>
+                                </li>
+                                <li style="padding-right:3%">
+                                    <img src="image/d_img6.png"/>
+                                    <p>工厂</p>
+                                </li>
+                            </ul>
+                            <ul class="custom">
+                                <h1>自定义占地</h1>
+                                <li style="border-bottom:none;"><img src="image/d_img7.png"/> </li>
+                                <form>
+                                    <input style="width:15%" type="text" value="土地名"/>
+                                    <input style="width:8%" type="text" value="m"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+                                    <input style="width:8%;margin-left:2%" type="text" value="n"/>
+                                    <input id="q_ding" type="button" value="确定"/>
+                                </form>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*m,n的取值范围在5~15之间</p>
+                            </ul>
+                        </div>
+                    </aside>
+                    <!--账单-->
+                    <aside class="aside_bg2 hide">
+                        <div class="z_dan">
+                            <ul>
+                                <li>时间</li>
+                                <li>收支</li>
+                                <li>类别</li>
+                                <li>总计</li>
+                            </ul>
+                        </div>
+                        <div class="land_main">
+                            <div class="zhangdan">
+                                <ul>
+                                    <li>2014/06/11&nbsp;<br/>12:46</li>
+                                    <li>+500</li>
+                                    <li>系统赠送</li>
+                                    <li style="border-right: none">200500</li>
+                                </ul>
+                                <ul>
+                                    <li>2014/06/11&nbsp;<br/>12:46</li>
+                                    <li>+500</li>
+                                    <li>系统赠送</li>
+                                    <li style="border-right: none">200500</li>
+                                </ul>
+                                <ul>
+                                    <li>2014/06/11&nbsp;<br/>12:46</li>
+                                    <li>+500</li>
+                                    <li>系统赠送</li>
+                                    <li style="border-right: none">200500</li>
+                                </ul>
+                                <ul>
+                                    <li>2014/06/11&nbsp;<br/>12:46</li>
+                                    <li>+500</li>
+                                    <li>系统赠送</li>
+                                    <li style="border-right: none">200500</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                    <!--好友-->
+                    <aside class="aside_bg3 hide">
+                        <div class="friend_nav">
+                            <p class="d_left"><img src="image/xx_img.png"/></p>
+                            <p class="d_right">
+                                <img style="padding-top:33px;width:25px;" src="image/s_xin.png"/>
+                                <img style="padding-top:29px;width: 25px;" src="image/t_jia.png"/>
+                            </p>
+                        </div>
+                        <div class="land_main">
+                            <div class="friends_list">
+                                <dl>
+                                    <dd>
+                                        <img src="image/friend_img.png"/>
+                                        <p><span>用户名</span><img src="image/level.jpg"/></p>
+                                        <p><em><img src="image/zhandi.jpg"></em><i>125块地/700000金币</i></p>
+                                    </dd>
+                                    <dt>
+                                        <span class="bg1">定位好友</span>
+                                        <span class="bg2">取消共享</span>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/friend_img.png"/>
+                                        <p><span>用户名</span><img src="image/level.jpg"/></p>
+                                        <p><em><img src="image/zhandi.jpg"></em><i>125块地/700000金币</i></p>
+                                    </dd>
+                                    <dt>
+                                        <span class="bg1">定位好友</span>
+                                        <span class="bg2">取消共享</span>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/friend_img.png"/>
+                                        <p><span>用户名</span><img src="image/level.jpg"/></p>
+                                        <p><em><img src="image/zhandi.jpg"></em><i>125块地/700000金币</i></p>
+                                    </dd>
+                                    <dt>
+                                        <span class="bg1">定位好友</span>
+                                        <span class="bg2">取消共享</span>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/friend_img.png"/>
+                                        <p><span>用户名</span><img src="image/level.jpg"/></p>
+                                        <p><em><img src="image/zhandi.jpg"></em><i>125块地/700000金币</i></p>
+                                    </dd>
+                                    <dt>
+                                        <span class="bg1">定位好友</span>
+                                        <span class="bg2">取消共享</span>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/friend_img.png"/>
+                                        <p><span>用户名</span><img src="image/level.jpg"/></p>
+                                        <p><em><img src="image/zhandi.jpg"></em><i>125块地/700000金币</i></p>
+                                    </dd>
+                                    <dt>
+                                        <span class="bg1">定位好友</span>
+                                        <span class="bg2">取消共享</span>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/friend_img.png"/>
+                                        <p><span>用户名</span><img src="image/level.jpg"/></p>
+                                        <p><em><img src="image/zhandi.jpg"></em><i>125块地/700000金币</i></p>
+                                    </dd>
+                                    <dt>
+                                        <span class="bg1">定位好友</span>
+                                        <span class="bg2">取消共享</span>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/friend_img.png"/>
+                                        <p><span>用户名</span><img src="image/level.jpg"/></p>
+                                        <p><em><img src="image/zhandi.jpg"></em><i>125块地/700000金币</i></p>
+                                    </dd>
+                                    <dt>
+                                        <span class="bg1">定位好友</span>
+                                        <span class="bg2">取消共享</span>
+                                    </dt>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/friend_img.png"/>
+                                        <p><span>用户名</span><img src="image/level.jpg"/></p>
+                                        <p><em><img src="image/zhandi.jpg"></em><i>125块地/700000金币</i></p>
+                                    </dd>
+                                    <dt>
+                                        <span class="bg1">定位好友</span>
+                                        <span class="bg2">取消共享</span>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </div>
+                    </aside>
+                    <!--土地-->
+                    <aside class="aside_bg4 hide">
+                        <div class="soil_nav">
+                            <ul>
+                                <li>
+                                    <img src="image/land_img.png"/>
+                                    <p>125快地</p>
+                                </li>
+                                <li>
+                                    <img src="image/q_dai.png"/>
+                                    <p>700000金币</p>
+                                </li>
+                            </ul>
+                            <span>出售所有</span>
+                        </div>
+                        <div class="land_main">
+                            <div class="land_list">
+                                <dl>
+                                    <dd>
+                                        <img src="image/d_img1.png"/>
+                                        <p>学校</p>
+                                    </dd>
+                                    <dt>
+                                        <p><i>Title&nbsp;Name</i><span>（出售中...）</span></p>
+                                        <p>位置:N39°43’,E14°21’</p>
+                                        <p>价格:4999金币</p>
+                                        <p>访问量:300</p>
+                                    </dt>
+                                    <em>GO</em>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/d_img2.png"/>
+                                        <p>医院</p>
+                                    </dd>
+                                    <dt>
+                                    <p><i>Title&nbsp;Name</i><span></span></p>
+                                    <p>位置:N39°43’,E14°21’</p>
+                                    <p>价格:4999金币</p>
+                                    <p>访问量:300</p>
+                                    </dt>
+                                    <em>GO</em>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/d_img1.png"/>
+                                        <p>学校</p>
+                                    </dd>
+                                    <dt>
+                                    <p><i>Title&nbsp;Name</i><span>（出售中...）</span></p>
+                                    <p>位置:N39°43’,E14°21’</p>
+                                    <p>价格:4999金币</p>
+                                    <p>访问量:300</p>
+                                    </dt>
+                                    <em>GO</em>
+                                </dl>
+                                <dl>
+                                    <dd>
+                                        <img src="image/d_img2.png"/>
+                                        <p>医院</p>
+                                    </dd>
+                                    <dt>
+                                    <p><i>Title&nbsp;Name</i><span></span></p>
+                                    <p>位置:N39°43’,E14°21’</p>
+                                    <p>价格:4999金币</p>
+                                    <p>访问量:300</p>
+                                    </dt>
+                                    <em>GO</em>
+                                </dl>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </article>
+    </section>
+</body>
+</html>

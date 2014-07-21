@@ -1,0 +1,50 @@
+<div class="z_dan">
+    <ul>
+        <li>时间</li>
+        <li>收支</li>
+        <li>类别</li>
+        <li>总计</li>
+    </ul>
+</div>
+<div class="land_main">
+    <div class="zhangdan">
+     <!--    <ul>
+            <li>2014/06/11&nbsp;<br/>12:46</li>
+            <li>+500</li>
+            <li>系统赠送</li>
+            <li style="border-right: none">200500</li>
+        </ul> -->
+    </div>
+</div>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var json={
+            requestItems:getMessage("messageBean/0x01_0x40_req.js",["0","0"]),
+            responseItems:getMessage("messageBean/0x01_0x40_resp.js"),
+            flag:1,
+            offset:26
+        };
+        RndchinaPlugin.RequestPlugin(json,function(data){
+            data=JSON.parse(data);
+            //data为返回的数据
+            switch (data.ResCode) {
+                case "0":
+                    var html="";
+                    html+="<ul><li>"+Convert2DateTime(data.DealTime)+"</li>";
+                    html+="<li>"+(parseInt(data.Income)-parseInt(data.Expenses))+"</li>";
+                    html+="<li>"+data.DealType+"</li>";
+                    html+="<li style='border-right: none'>"+data.LandNum+"</li></ul>";//文档无总结字段
+                    $(".zhangdan").append(html);
+                    break;
+                case "255":
+                    warning("未知错误");
+                    break;
+                default:
+                    warning("未知错误，请重试");
+            };
+        },function(data){
+            warning(data);
+        });
+    })
+</script>

@@ -1,0 +1,179 @@
+<script type="text/javascript">
+$(function(){
+	//占地图片点击事件
+	$("img[ltype]").bind("click",function(){
+		var width=parseInt($(this).attr("lwidth"));
+		var height=parseInt($(this).attr("lheight"));
+		if(ifCaptureLand(width,height,localStorage[RANK])){
+			var type=$(this).attr("ltype");
+			var money=$(this).attr("lmoney");
+			menuBack();
+			$(".move").show();
+			var myIcon = new BMap.Icon("image/d_img"+type+".png", new BMap.Size(52*width,52*height),{
+	        	anchor: new BMap.Size(26*width,26*height), // 指定定位位置  
+	            imageOffset: new BMap.Size(0, 0) // 设置图片偏移  
+	        });
+	        myIcon.setImageSize(new BMap.Size(52*width,52*height));
+	        curBuilding = new BMap.Marker(map.getCenter(),{icon:myIcon});  // 创建标注
+	        curBuilding.width=width;curBuilding.height=height;curBuilding.type=type;curBuilding.money=money;
+	        map.addOverlay(curBuilding);// 将标注添加到地图中
+			$(".move")[0].addEventListener('touchmove',curBuildingTouchmove,false);
+	        //移动停止执行占地操作
+			$(".move")[0].addEventListener('touchend',curBuildingTouchend,false);
+		}else
+			warning("当前等级不能使用该建筑占地");
+	});
+});
+</script>
+<div class="land_nav">
+	<!-- <p class="d_left"><img src="image/j_bi.png"/><em>50000金币</em></p> -->
+	<p class="d_right"><img src="image/dot_01.png"/><img id="gou" src="image/dot_02.png"/></p>
+</div>
+	<div class="land_main">
+	<ul>
+                      <h1>一级 (1*1)</h1>
+                      <li>
+                          <img lwidth="1" lheight="1" ltype="1" lmoney="20" src="image/d_img1.png"/>
+                          <p>学校</p>
+                      </li>
+                      <li>
+                          <img lwidth="1" lheight="1" ltype="2" lmoney="20" src="image/d_img2.png"/>
+                          <p>医院</p>
+                      </li>
+                      <li>
+                          <img lwidth="1" lheight="1" ltype="3" lmoney="20" src="image/d_img3.png"/>
+                          <p>公园</p>
+                      </li>
+                      <li>
+                          <img lwidth="1" lheight="1" ltype="4" lmoney="20" src="image/d_img4.png"/>
+                          <p>写字楼</p>
+                      </li>
+                      <li>
+                          <img lwidth="1" lheight="1" ltype="5" lmoney="20" src="image/d_img5.png"/>
+                          <p>商铺</p>
+                      </li>
+                      <li style="padding-right:3%">
+                   	<img lwidth="1" lheight="1" ltype="6" lmoney="20" src="image/d_img6.png"/>
+                   	<p>工厂</p>
+                		 </li>
+               </ul>
+                      <ul>
+                          <h1>二级 (1*2)</h1>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="1" lmoney="50" src="image/d_img1.png"/>
+                              <p>学校</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="2" lmoney="50" src="image/d_img2.png"/>
+                              <p>医院</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="3" lmoney="50" src="image/d_img3.png"/>
+                              <p>公园</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="4" lmoney="50" src="image/d_img4.png"/>
+                              <p>写字楼</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="5" lmoney="50" src="image/d_img5.png"/>
+                              <p>商铺</p>
+                          </li>
+                          <li style="padding-right:3%">
+                              <img lwidth="2" lheight="1" ltype="6" lmoney="50" src="image/d_img6.png"/>
+                              <p>工厂</p>
+                          </li>
+                      </ul>
+                      <ul>
+                          <h1>四级 (2*2)</h1>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="1" lmoney="120" src="image/d_img1.png"/>
+                              <p>学校</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="2" lmoney="120" src="image/d_img2.png"/>
+                              <p>医院</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="3" lmoney="120" src="image/d_img3.png"/>
+                              <p>公园</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="4" lmoney="120" src="image/d_img4.png"/>
+                              <p>写字楼</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="5" lmoney="120" src="image/d_img5.png"/>
+                              <p>商铺</p>
+                          </li>
+                          <li style="padding-right:3%">
+                             <img lwidth="2" lheight="2" ltype="6" lmoney="120" src="image/d_img6.png"/>
+                             <p>工厂</p>
+                         </li>
+                      </ul>
+                      <ul>
+                          <h1>六级 (3*3)</h1>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="1" lmoney="300" src="image/d_img1.png"/>
+                              <p>学校</p>
+                          </li>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="2" lmoney="300" src="image/d_img2.png"/>
+                              <p>医院</p>
+                          </li>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="3" lmoney="300" src="image/d_img3.png"/>
+                              <p>公园</p>
+                          </li>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="4" lmoney="300" src="image/d_img4.png"/>
+                              <p>写字楼</p>
+                          </li>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="5" lmoney="300" src="image/d_img5.png"/>
+                              <p>商铺</p>
+                          </li>
+                          <li style="padding-right:3%">
+                             <img lwidth="3" lheight="3" ltype="6" lmoney="300" src="image/d_img6.png"/>
+                             <p>工厂</p>
+                         </li>
+                      </ul>
+                      <ul>
+                          <h1>八级 (4*4)</h1>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="1" lmoney="560" src="image/d_img1.png"/>
+                              <p>学校</p>
+                          </li>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="2" lmoney="560" src="image/d_img2.png"/>
+                              <p>医院</p>
+                          </li>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="3" lmoney="560" src="image/d_img3.png"/>
+                              <p>公园</p>
+                          </li>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="4" lmoney="560" src="image/d_img4.png"/>
+                              <p>写字楼</p>
+                          </li>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="5" lmoney="560" src="image/d_img5.png"/>
+                              <p>商铺</p>
+                          </li>
+                          <li style="padding-right:3%">
+                              <img lwidth="4" lheight="4" ltype="6" lmoney="560" src="image/d_img6.png"/>
+                              <p>工厂</p>
+                          </li>
+                      </ul>
+                      <ul class="custom">
+                          <h1>十级 (自定义占地)</h1>
+                          <li style="border-bottom:none;"><img src="image/d_img7.png"/> </li>
+                          <form>
+                              <input style="width:15%" type="text" value="土地名"/>
+                              <input style="width:8%" type="text" value="m"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+                              <input style="width:8%;margin-left:2%" type="text" value="n"/>
+                              <input id="q_ding" type="button" value="确定"/>
+                          </form>
+                          <p style="padding-bottom: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*m,n的取值范围在5~15之间</p>
+                      </ul>
+                  </div>

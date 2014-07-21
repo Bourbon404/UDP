@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/params.js"></script>
+	<script src="js/cordova.js"></script>
+</head>
+<body>
+	<div class='wrap'>
+		<div class="header">
+			<h1 onclick='window.location.href="system_set.html"'>修改昵称</h1>
+		</div>
+		<div class="main">
+			<div class='long_gray_btn no_arrow'>
+				<input type="text" class='long_input' placeholder='输入新的昵称' id='NickName' />
+			</div>
+			<div class="long_blue_btn" id='submit'>
+				<span>确认修改</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- 警告框 -->
+	<div class="warning_wrap">
+		<p>
+			<!-- 警告的内容 -->
+		</p>
+	</div>
+
+	<!-- 成功 -->
+	<div class="success_wrap">
+		<p>
+			<!-- 成功的内容 -->
+		</p>
+	</div>
+
+	<script src="js/set_nickname.js"></script>
+</body>
+</html>

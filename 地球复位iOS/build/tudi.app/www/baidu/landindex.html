@@ -1,0 +1,350 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="trimview" content="1.0.0">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/common.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/globe.css"/>
+    <style>
+    .move{
+    	display:none;
+		position: absolute;
+		z-index: 999;
+		width: 100%;
+		height: 100%;
+	}
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=El4K8oVISSEigcu41tiFfiD4"></script>
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/globe.js"></script>
+    <script type="text/javascript" src="../js/common.js"></script>
+	<script type="text/javascript" src="../js/land.js"></script>
+	<script type="text/javascript" src="../js/building.js"></script>
+	<script type="text/javascript" src="../js/er_latband_array.js"></script>
+	<script type="text/javascript" src="../js/earthLatBand.js"></script>
+	<script type="text/javascript" src="../js/mapOperate.js"></script>
+	<script type="text/javascript" src="../js/cordova.js"></script>
+	<script type="text/javascript">
+	//地图全局变量
+	var map;
+	//当前占地建筑
+	var curBuilding;
+	$(function(){
+		map = new BMap.Map("container");          // 创建地图实例
+		var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+		map.centerAndZoom(point, 18);                 // 初始化地图，设置中心点坐标和地图级别
+		map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用
+		map.enableContinuousZoom();//启用地图惯性拖拽，默认禁用
+		
+		map.addEventListener("tilesloaded",function(){
+			if(map.getZoom()==18){
+				map.clearOverlays();
+				//可是范围经纬度
+				var bs = map.getBounds();   //获取可视区域
+				var bssw = bs.getSouthWest();   //可视区域左下角
+				var bsne = bs.getNorthEast();   //可视区域右上角
+				getCurrentLands(bssw.lng,bssw.lat,bsne.lng,bsne.lat,addPaneShade);
+				getCurrentBuildings([bssw.lng,bsne.lng,bsne.lat,bssw.lat,""]);
+			}else
+				map.clearOverlays();
+		});
+		//login();
+		//$("nav ul li").bind("click",function(){
+			//$(".aside_bg1").html(getHtml("./captureLand.html"));
+		//});
+		//占地图片点击事件
+		$("img[ltype]").bind("click",function(){
+			var width=parseInt($(this).attr("lwidth"));
+			var height=parseInt($(this).attr("lheight"));
+			var type=$(this).attr("ltype");
+			var money=$(this).attr("lmoney");
+			menuBack();
+			$(".move").show();
+			var myIcon = new BMap.Icon("../image/d_img"+type+".png", new BMap.Size(52*width,52*height),{
+	        	anchor: new BMap.Size(26*width,26*height), // 指定定位位置  
+	            imageOffset: new BMap.Size(0, 0) // 设置图片偏移  
+	        });
+	        myIcon.setImageSize(new BMap.Size(52*width,52*height));
+	        curBuilding = new BMap.Marker(map.getCenter(),{icon:myIcon});  // 创建标注
+	        curBuilding.width=width;curBuilding.height=height;curBuilding.type=type;curBuilding.money=money;
+	        curBuilding.addEventListener("click", function(e){
+	        	alert(1);
+	        });
+	        map.addOverlay(curBuilding);// 将标注添加到地图中
+			$(".move")[0].addEventListener('touchmove',curBuildingTouchmove,false);
+	        //移动停止执行占地操作
+			$(".move")[0].addEventListener('touchend',curBuildingTouchend,false);
+		});
+	});
+	function login(){
+		var json={
+				requestItems:getMessage("../messageBean/0x01_0x02_req.js",["13691000343","49ba59abbe56e057","Roy","mi","0x00","",""]),
+				responseItems:getMessage("../messageBean/0x01_0x02_resp.js")
+		};
+		RndchinaPlugin.RequestPlugin(json,function(data){
+			data=JSON.parse(data);
+			//data为返回的数据
+			switch (data.ResCode) {
+				case "0":
+					alert("成功");
+					localStorage.UserId=data.UserID;
+					break;
+				default:
+					alert("登录失败");
+			};
+		},function(data){
+			alert("失败");
+		});
+	}
+	
+	</script>
+</head>
+<body>
+    <!--购买弹出层-->
+    <div class="tanchu hide">
+      <div class="t_area">
+          <p><img src="../image/gou_bg.png"/><i>购买金币</i></p>
+          <ul>
+              <li style="margin-left:0">
+                  <img src="../image/j_bi.png"/>
+                  <p>100金币</p>
+              </li>
+              <li>
+                  <img src="../image/j_img02.png"/>
+                  <p>500金币</p>
+              </li>
+              <li>
+                  <img src="../image/j_img03.png"/>
+                  <p>1000金币</p>
+              </li>
+              <li>
+                  <img src="../image/j_img04.png"/>
+                  <p>2000金币</p>
+              </li>
+          </ul>
+          <span class="inpt"><input type="text" value="1人民币=100金币" name=""/></span>
+          <span class="butn"><input id="q_ren" type="button" value="确认"/><input id="q_xiao" type="button" value="取消"/></span>
+      </div>
+    </div>
+    <!--头部-->
+    <header>
+        <ul>
+            <li>
+                <img style="width:35px;padding-top:5px;" src="../image/user_name.png"/>
+                <p class="color1">磨唧小粪</p>
+            </li>
+            <li>
+                <img style="width:30px;padding-top:10px;" src="../image/v_grade.png"/>
+                <p class="color2">等级二</p>
+            </li>
+            <li>
+                <img style="padding-top:10px;" src="../image/gold.png"/>
+                <p class="color3">50000金币</p>
+            </li>
+            <li>
+                <img style="padding-top:10px;" src="../image/land.png"/>
+                <p class="color4">125块地/700000金币</p>
+            </li>
+            <li>
+                <img style="padding-top:12px;" src="../image/g_img.png"/>
+                <p class="color5">3456</p>
+            </li>
+        </ul>
+    </header>
+    <!--主界面-->
+    <section>
+        <div class="grid" id="container"></div>
+        <div class="set"><img src="../image/set.png"/> </div>
+        <div class="back"><img src="../image/f_hui.png"/> </div>
+        <div class="move"></div>
+        <!--占地、账单、好友、土地-->
+        <article>
+            <div class="main">
+                <nav>
+                    <ul>
+                        <li class="l_bg1"><i>占地</i></li>
+                        <li class="l_bg2"><i>账单</i></li>
+                        <li class="l_bg3"><i>好友</i></li>
+                        <li class="l_bg4"><i>土地</i></li>
+                    </ul>
+                </nav>
+                <div class="area">
+                    <!--占地-->
+                    <aside class="aside_bg1">
+                        <div class="land_nav">
+	<p class="d_left"><img src="../image/j_bi.png"/><em>50000金币</em></p>
+	<p class="d_right"><img src="../image/dot_01.png"/><img id="gou" src="../image/dot_02.png"/></p>
+</div>
+	<div class="land_main">
+	<ul>
+                         <h1>1*1</h1>
+                         <li>
+                             <img lwidth="1" lheight="1" ltype="1" lmoney="20" src="../image/d_img1.png"/>
+                             <p>学校</p>
+                         </li>
+                         <li>
+                             <img lwidth="1" lheight="1" ltype="2" lmoney="20" src="../image/d_img2.png"/>
+                             <p>医院</p>
+                         </li>
+                         <li>
+                             <img lwidth="1" lheight="1" ltype="3" lmoney="20" src="../image/d_img3.png"/>
+                             <p>公园</p>
+                         </li>
+                         <li>
+                             <img lwidth="1" lheight="1" ltype="4" lmoney="20" src="../image/d_img4.png"/>
+                             <p>写字楼</p>
+                         </li>
+                         <li>
+                             <img lwidth="1" lheight="1" ltype="5" lmoney="20" src="../image/d_img5.png"/>
+                             <p>商铺</p>
+                         </li>
+                         <li style="padding-right:3%">
+	                     	<img lwidth="1" lheight="1" ltype="6" lmoney="20" src="../image/d_img6.png"/>
+	                     	<p>工厂</p>
+                   		 </li>
+               </ul>
+                      <ul>
+                          <h1>1*2</h1>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="1" lmoney="50" src="../image/d_img1.png"/>
+                              <p>学校</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="2" lmoney="50" src="../image/d_img2.png"/>
+                              <p>医院</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="3" lmoney="50" src="../image/d_img3.png"/>
+                              <p>公园</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="4" lmoney="50" src="../image/d_img4.png"/>
+                              <p>写字楼</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="1" ltype="5" lmoney="50" src="../image/d_img5.png"/>
+                              <p>商铺</p>
+                          </li>
+                          <li style="padding-right:3%">
+                              <img lwidth="2" lheight="1" ltype="6" lmoney="50" src="../image/d_img6.png"/>
+                              <p>工厂</p>
+                          </li>
+                      </ul>
+                      <ul>
+                          <h1>2*2</h1>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="1" lmoney="120" src="../image/d_img1.png"/>
+                              <p>学校</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="2" lmoney="120" src="../image/d_img2.png"/>
+                              <p>医院</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="3" lmoney="120" src="../image/d_img3.png"/>
+                              <p>公园</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="4" lmoney="120" src="../image/d_img4.png"/>
+                              <p>写字楼</p>
+                          </li>
+                          <li>
+                              <img lwidth="2" lheight="2" ltype="5" lmoney="120" src="../image/d_img5.png"/>
+                              <p>商铺</p>
+                          </li>
+                          <li style="padding-right:3%">
+                             <img lwidth="2" lheight="2" ltype="6" lmoney="120" src="../image/d_img6.png"/>
+                             <p>工厂</p>
+                         </li>
+                      </ul>
+                      <ul>
+                          <h1>3*3</h1>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="1" lmoney="300" src="../image/d_img1.png"/>
+                              <p>学校</p>
+                          </li>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="2" lmoney="300" src="../image/d_img2.png"/>
+                              <p>医院</p>
+                          </li>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="3" lmoney="300" src="../image/d_img3.png"/>
+                              <p>公园</p>
+                          </li>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="4" lmoney="300" src="../image/d_img4.png"/>
+                              <p>写字楼</p>
+                          </li>
+                          <li>
+                              <img lwidth="3" lheight="3" ltype="5" lmoney="300" src="../image/d_img5.png"/>
+                              <p>商铺</p>
+                          </li>
+                          <li style="padding-right:3%">
+                             <img lwidth="3" lheight="3" ltype="6" lmoney="300" src="../image/d_img6.png"/>
+                             <p>工厂</p>
+                         </li>
+                      </ul>
+                      <ul>
+                          <h1>4*4</h1>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="1" lmoney="560" src="../image/d_img1.png"/>
+                              <p>学校</p>
+                          </li>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="2" lmoney="560" src="../image/d_img2.png"/>
+                              <p>医院</p>
+                          </li>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="3" lmoney="560" src="../image/d_img3.png"/>
+                              <p>公园</p>
+                          </li>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="4" lmoney="560" src="../image/d_img4.png"/>
+                              <p>写字楼</p>
+                          </li>
+                          <li>
+                              <img lwidth="4" lheight="4" ltype="5" lmoney="560" src="../image/d_img5.png"/>
+                              <p>商铺</p>
+                          </li>
+                          <li style="padding-right:3%">
+                              <img lwidth="4" lheight="4" ltype="6" lmoney="560" src="../image/d_img6.png"/>
+                              <p>工厂</p>
+                          </li>
+                      </ul>
+                      <ul class="custom">
+                          <h1>自定义占地</h1>
+                          <li style="border-bottom:none;"><img src="../image/d_img7.png"/> </li>
+                          <form>
+                              <input style="width:15%" type="text" value="土地名"/>
+                              <input style="width:8%" type="text" value="m"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*
+                              <input style="width:8%;margin-left:2%" type="text" value="n"/>
+                              <input id="q_ding" type="button" value="确定"/>
+                          </form>
+                          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*m,n的取值范围在5~15之间</p>
+                      </ul>
+                  </div>
+                    </aside>
+                    
+                </div>
+            </div>
+        </article>
+    </section>
+	<!-- 警告框 -->
+	<div class="warning_wrap">
+		<p>
+			<!-- 警告的内容 -->
+		</p>
+	</div>
+
+	<!-- 成功 -->
+	<div class="success_wrap">
+		<p>
+			<!-- 成功的内容 -->
+		</p>
+	</div>
+</body>
+</html>

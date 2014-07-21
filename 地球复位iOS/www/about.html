@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/common.js"></script>
+	<!--<script src="js/cordova.js"></script>-->
+	<script src="js/iscroll-lite.js"></script>
+</head>
+<body>
+	<div class='wrap'>
+		<div class="header">
+			<h1 onclick='window.location.href="system_set.html"'>关于我们</h1>
+		</div>
+		<div class="about_main" id='wrapper'>
+			<ul>
+				<li>
+					本系统是一个基于位置服务的一个应用软件（同时具有游戏性质），用户可以标记某位置，位置标记信息上传到服务器进行保存。同时客户端可以从服务器获取当前界面所有的标记信息（包括其他用户的），以此为基础产生相互访问、买卖等动作。
+				</li>
+				<li>系统同时需要实现简单的好友模块，好友间不通信，仅能够看到对方的部分信息，信息从服务器获取。</li>
+				<li>要求实现IOS、安卓两个平台，中文版，分辨率支持高中低分辨率适配。</li>
+				<li>
+					主要原则：客户端尽量不显示文字，通过图形表达；尽量由服务端做决定，客户端执行。客户端侧能够避免的网络交互则尽量在客户端避免。
+				</li>
+				<li>
+					1.	登陆模块：
+				</li>
+				<li>登陆模块主要实现用户的注册、登陆，密码修改等功能，注册时采用短信验证，登陆界面参考微信。</li>
+				<li>
+					2.	土地模块：
+				</li>
+				<li>
+					土地划分的原则是根据经纬度，经过固定算法计算得出，要求所有客户端上看到的土地划分均完全一致，不存在错位、交叠等情况，在服务端是唯一的。
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="js/about.js"></script>
+</body>
+</html>

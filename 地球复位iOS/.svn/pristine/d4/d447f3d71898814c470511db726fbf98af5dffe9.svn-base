@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/params.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/cordova.js"></script>
+	<script src="js/iscroll-lite.js"></script>
+	<script src="js/MD5.js"></script>
+</head>
+<body>
+	<div class='wrap'>
+		<div class="header">
+			<h1>注册</h1>
+		</div>
+		<div class="main" id='wrapper'>
+			<ul>
+				<li class='long_gray_btn country' id='selectCountry'>
+					<span class='font_size_15'>国家和地区</span>
+					<span class="right_black_arrow"></span>
+					<span class='grey_word china font_size_13' id='country'>中国大陆</span>
+				</li>
+				<li>
+					<span class='eight-six' id='AreaCode'>+86</span>
+					<input type="text" placeholder='请填写您的手机号' class='phone_number' id='MobileNum'/>
+				</li>
+				<!-- (1) -->
+				<li class='long_gray_btn no_arrow regist_password'>
+					<input type="password" class='long_input' placeholder='设置密码' id='Password'/>
+				</li>
+				<li class='long_gray_btn no_arrow regist_password regist_password2'>
+					<input type="password" class='long_input' placeholder='确认密码' id='rePassword'/>
+				</li>
+				<li class='long_blue_btn clear' id='registNext'>
+					<span>下一步</span>
+				</li>
+				<li class='agree'>
+					<span class='read-check'></span>
+					<span class='gray_word font_size_24'>阅读并同意</span>
+					<a href="javascript:;" class='help'>《XXX服务协议》</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- 警告框 -->
+		<div class="warning_wrap">
+			<p>
+				<!-- 警告的内容 -->
+			</p>
+		</div>
+
+		<div class="country_wrap">
+			<ul>
+				
+			</ul>
+		</div>
+	</div>
+
+	<script src="js/common.js"></script>
+	<script src="js/regist.js"></script>
+</body>
+</html>
+
+<!--(1)
+<li class='long_gray_btn no_arrow'>
+<input type="text" placeholder='用户名' class='long_input user_name' id='userId'/>
+<span class='username_tip gray_word font_size_13'>(注意用户名不能超过16位字符中文字占两位符)</span>
+</li>
+-->

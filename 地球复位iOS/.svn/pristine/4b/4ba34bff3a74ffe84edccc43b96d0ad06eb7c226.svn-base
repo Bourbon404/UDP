@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/common.js"></script>
+	<!--<script src="js/cordova.js"></script>-->
+</head>
+<body>
+	<div class='wrap'>
+		<div class="header">
+			<h1 onclick='window.location.href="landindex.html"'>系统设置</h1>
+		</div>
+		<div class="main">
+			<div class="long_gray_btn long_up_btn long_padding" onclick='window.location.href="set_nickname.html"'>
+				<span class='font_size_15'>修改昵称</span>
+			</div>
+			<div class="long_gray_btn long_down_btn long_padding" onclick='window.location.href="re_password.html"'>
+				<span class='font_size_15'>修改密码</span>
+			</div>
+			<div class="long_gray_btn long_padding system_message" onclick='window.location.href="system_message.html"'>
+				<span class='font_size_15'>系统消息</span>
+				<span class='message_mark'>
+					<i></i>
+				</span>
+			</div>
+			<div class="long_gray_btn long_padding" onclick='window.location.href="about.html"'>
+				<span class='font_size_15'>关于我们</span>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/system_set.js"></script>
+</body>
+</html>
